@@ -18,7 +18,7 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     usage
 fi
 
-URL=https://issues.liferay.com/browse/$(sed "$1!d" "$TODO_FILE"|cut -f 1 -d " ")
+URL=https://issues.liferay.com/browse/$(sed "$1!d" "$TODO_FILE"|grep -oP "(\(.\) )? *\K.*")
 if [ "$URL" = "" ]; then
     echo "Error, no item #$1 found!"
     exit 1
